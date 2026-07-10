@@ -37,6 +37,12 @@
             --radius-lg: 20px;
             --gradient: linear-gradient(135deg, #1972e6 0%, #1155b3 100%);
             --gradient-dark: linear-gradient(135deg, #1155b3 0%, #0a2b4e 100%);
+            
+            /* Responsive variables */
+            --navbar-height: 70px;
+            --container-padding: clamp(16px, 4vw, 40px);
+            --section-padding: clamp(50px, 8vw, 100px);
+            --card-min-height: clamp(280px, 30vh, 350px);
         }
 
         * {
@@ -47,7 +53,8 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 70px;
+            scroll-padding-top: var(--navbar-height);
+            overflow-x: hidden;
         }
 
         body {
@@ -58,6 +65,7 @@
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
+            width: 100%;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -70,7 +78,7 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 var(--container-padding);
         }
 
         /* ===== BUTTONS ===== */
@@ -78,7 +86,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 13px 28px;
+            padding: clamp(11px, 1.2vw, 13px) clamp(20px, 2.5vw, 28px);
             border-radius: 10px;
             text-decoration: none;
             font-weight: 700;
@@ -86,7 +94,10 @@
             transition: all 0.3s ease;
             border: none;
             font-family: 'Poppins', sans-serif;
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 1vw, 0.95rem);
+            min-height: 48px;
+            min-width: 44px;
+            white-space: nowrap;
         }
 
         .btn-primary {
@@ -119,7 +130,7 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 70px;
+            height: var(--navbar-height);
             background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(12px) saturate(180%);
             -webkit-backdrop-filter: blur(12px) saturate(180%);
@@ -127,7 +138,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 5%;
+            padding: 0 clamp(16px, 4vw, 5%);
             transition: all 0.32s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -136,23 +147,29 @@
         .logo-area {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: clamp(8px, 1.5vw, 12px);
+            flex-shrink: 0;
         }
-        .logo-area img { height: 48px; width: auto; }
+        .logo-area img { 
+            height: clamp(36px, 5vw, 48px); 
+            width: auto;
+            max-width: 100%;
+        }
         .logo-text {
-            font-size: 1.9rem;
+            font-size: clamp(1.3rem, 3vw, 1.9rem);
             font-weight: 900;
             letter-spacing: -0.04em;
             text-transform: uppercase;
             color: #000;
+            white-space: nowrap;
         }
         .logo-dot { color: #1972e6; }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 2rem;
-            font-size: 0.98rem;
+            gap: clamp(1rem, 2.5vw, 2rem);
+            font-size: clamp(0.85rem, 1vw, 0.98rem);
             font-weight: 600;
         }
         .nav-links a {
@@ -161,6 +178,7 @@
             transition: all 0.25s;
             cursor: pointer;
             position: relative;
+            padding: 4px 0;
         }
         .nav-links a::after {
             content: '';
@@ -183,17 +201,28 @@
             display: none;
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: clamp(1.3rem, 3vw, 1.5rem);
             color: #111;
             cursor: pointer;
+            padding: 8px 10px;
+            min-height: 44px;
+            min-width: 44px;
+            border-radius: 8px;
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(0,0,0,0.05);
         }
 
         /* ===== HERO SECTION ===== */
         .hero {
             background: linear-gradient(135deg, #f7f9ff 0%, #e6f0ff 100%);
-            padding: 150px 0 80px;
+            padding: calc(var(--navbar-height) + clamp(40px, 10vh, 80px)) 0 clamp(40px, 8vh, 80px);
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
 
         .hero::before {
@@ -205,6 +234,7 @@
             height: 100%;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(25,114,230,0.05)"/></svg>');
             background-size: cover;
+            pointer-events: none;
         }
 
         .hero-inner {
@@ -214,38 +244,42 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: clamp(2rem, 5vw, 4rem);
             align-items: center;
+            width: 100%;
         }
 
         .hero-text h1 {
-            font-size: clamp(4.2rem, 11vw, 8.5rem);
+            font-size: clamp(3rem, 12vw, 8.5rem);
             font-weight: 900;
             line-height: 0.92;
             text-transform: uppercase;
             letter-spacing: -0.05em;
-            margin-bottom: 1rem;
+            margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
+            word-wrap: break-word;
         }
         .hero-text h1 .dot-blue { color: #1972e6; }
 
         .hero-text .tagline {
-            font-size: clamp(0.6rem, 2.4vw, 1.6rem);
+            font-size: clamp(0.8rem, 2.5vw, 1.6rem);
             font-weight: 700;
-            margin-bottom: 0.8rem;
+            margin-bottom: clamp(0.5rem, 1vh, 0.8rem);
+            line-height: 1.3;
         }
         .hero-text .tagline span.highlight { color: #1972e6; }
         .hero-text .tagline span.dot { color: #1972e6; }
 
         .hero-text .sub {
-            font-size: 1.15rem;
+            font-size: clamp(0.95rem, 1.5vw, 1.15rem);
             max-width: 100%;
-            margin-bottom: 2.2rem;
+            margin-bottom: clamp(1.5rem, 3vh, 2.2rem);
             opacity: 0.95;
+            line-height: 1.6;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 15px;
+            gap: clamp(10px, 1.5vw, 15px);
             flex-wrap: wrap;
         }
 
@@ -255,11 +289,12 @@
             align-items: center;
             pointer-events: none;
             width: 100%;
+            max-width: 100%;
         }
 
         .hero-animation-container dotlottie-wc {
-            width: 480px;
-            height: 480px;
+            width: min(480px, 90vw, 50vh);
+            height: min(480px, 90vw, 50vh);
             max-width: 100%;
             filter: drop-shadow(0 8px 20px rgba(25,114,230,0.2));
         }
@@ -276,24 +311,25 @@
 
         /* ===== SECTION STYLES ===== */
         .section {
-            padding: 80px 0;
+            padding: var(--section-padding) 0;
             position: relative;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: clamp(30px, 5vh, 40px);
         }
 
         .main-title {
-            font-size: clamp(3.2rem, 8vw, 4.8rem);
+            font-size: clamp(2.2rem, 8vw, 4.8rem);
             font-weight: 800;
             letter-spacing: 0.1em;
             text-transform: uppercase;
+            line-height: 1.1;
         }
 
         .title-line {
-            width: 90px;
+            width: clamp(60px, 8vw, 90px);
             height: 4px;
             background: #1972e6;
             margin: 20px auto 0;
@@ -307,7 +343,8 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            font-size: 1.1rem;
+            font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+            padding: 0 16px;
         }
 
         .fade-up {
@@ -326,16 +363,17 @@
         /* ===== FEATURES / EDUCATION LEVELS ===== */
         .education-levels {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: clamp(16px, 2vw, 20px);
             margin-bottom: 40px;
+            width: 100%;
         }
 
         .level-card {
             background: var(--white);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow);
-            padding: 30px 20px;
+            padding: clamp(20px, 3vw, 30px) clamp(16px, 2vw, 20px);
             text-align: center;
             transition: all 0.3s ease;
             border: 1px solid rgba(0, 0, 0, 0.05);
@@ -344,7 +382,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            min-height: 320px;
+            min-height: var(--card-min-height);
         }
 
         .level-card::before {
@@ -365,20 +403,24 @@
         .level-card .btn {
             margin-top: auto;
             align-self: center;
+            width: 100%;
+            max-width: 200px;
+            justify-content: center;
         }
 
         .level-icon {
-            width: 80px;
-            height: 80px;
+            width: clamp(60px, 10vw, 80px);
+            height: clamp(60px, 10vw, 80px);
             background: var(--light-bg);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 2rem;
+            margin: 0 auto clamp(14px, 2vh, 20px);
+            font-size: clamp(1.5rem, 3vw, 2rem);
             color: var(--primary);
             transition: all 0.3s ease;
+            flex-shrink: 0;
         }
 
         .level-card:hover .level-icon {
@@ -390,15 +432,16 @@
         /* ===== CALCULATORS GRID ===== */
         .calculators-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: clamp(16px, 2vw, 20px);
+            width: 100%;
         }
 
         .calculator-card {
             background: var(--white);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow);
-            padding: 30px 20px;
+            padding: clamp(20px, 3vw, 30px) clamp(16px, 2vw, 20px);
             text-align: center;
             transition: all 0.3s ease;
             border: 1px solid rgba(0, 0, 0, 0.05);
@@ -407,7 +450,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            min-height: 350px;
+            min-height: var(--card-min-height);
         }
 
         .calculator-card::before {
@@ -428,20 +471,24 @@
         .calculator-card .btn {
             margin-top: auto;
             align-self: center;
+            width: 100%;
+            max-width: 200px;
+            justify-content: center;
         }
 
         .calculator-icon {
-            width: 70px;
-            height: 70px;
+            width: clamp(56px, 9vw, 70px);
+            height: clamp(56px, 9vw, 70px);
             background: var(--light-bg);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 1.8rem;
+            margin: 0 auto clamp(12px, 2vh, 20px);
+            font-size: clamp(1.4rem, 2.5vw, 1.8rem);
             color: var(--primary);
             transition: all 0.3s ease;
+            flex-shrink: 0;
         }
 
         .calculator-card:hover .calculator-icon {
@@ -455,11 +502,13 @@
             background: var(--white);
             border-radius: var(--radius-lg);
             padding: 0;
-            height: 500px;
+            height: clamp(350px, 60vh, 500px);
             overflow: hidden;
             box-shadow: var(--shadow);
             position: relative;
             border: 1px solid rgba(0, 0, 0, 0.05);
+            width: 100%;
+            min-height: 300px;
         }
 
         #healthcare-map {
@@ -470,26 +519,31 @@
 
         .search-box {
             position: absolute;
-            top: 10px;
+            top: clamp(8px, 1.5vh, 10px);
             left: 50%;
             transform: translateX(-50%);
             z-index: 9999;
             display: flex;
-            gap: 8px;
+            gap: clamp(4px, 1vw, 8px);
             background: var(--white);
-            padding: 8px;
+            padding: clamp(6px, 1vw, 8px);
             border-radius: var(--radius);
             box-shadow: var(--shadow);
+            width: calc(100% - 20px);
+            max-width: 500px;
         }
 
         .search-box input {
-            padding: 8px 10px;
+            padding: clamp(6px, 1vw, 8px) clamp(8px, 1.5vw, 10px);
             border-radius: 6px;
             border: 1px solid #e0e8f0;
-            width: 320px;
+            width: 100%;
+            min-width: 0;
             background: var(--white);
             color: #111;
             font-family: 'Poppins', sans-serif;
+            font-size: clamp(0.85rem, 1vw, 1rem);
+            min-height: 40px;
         }
 
         .search-box input:focus {
@@ -498,7 +552,7 @@
         }
 
         .search-box button {
-            padding: 8px 10px;
+            padding: clamp(6px, 1vw, 8px) clamp(12px, 1.5vw, 16px);
             border-radius: 6px;
             cursor: pointer;
             background: var(--gradient);
@@ -506,6 +560,10 @@
             border: none;
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
+            font-size: clamp(0.8rem, 0.9vw, 0.9rem);
+            min-height: 40px;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .search-box button:hover {
@@ -514,8 +572,8 @@
 
         .map-controls {
             position: absolute;
-            bottom: 10px;
-            right: 10px;
+            bottom: clamp(8px, 1.5vh, 10px);
+            right: clamp(8px, 1.5vw, 10px);
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -526,7 +584,7 @@
             background: var(--white);
             border: 1px solid #e0e8f0;
             border-radius: var(--radius);
-            padding: 8px 12px;
+            padding: clamp(6px, 1vw, 8px) clamp(10px, 1.5vw, 12px);
             cursor: pointer;
             color: #111;
             display: flex;
@@ -535,6 +593,8 @@
             transition: all 0.3s ease;
             font-family: 'Poppins', sans-serif;
             font-weight: 500;
+            font-size: clamp(0.75rem, 0.9vw, 0.85rem);
+            min-height: 40px;
         }
 
         .map-controls button:hover {
@@ -546,9 +606,10 @@
         /* ===== NEWS ===== */
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: clamp(20px, 3vw, 30px);
             margin-bottom: 40px;
+            width: 100%;
         }
 
         .news-card {
@@ -562,6 +623,7 @@
             flex-direction: column;
             height: 100%;
             position: relative;
+            min-height: 400px;
         }
 
         .news-card::before {
@@ -572,6 +634,7 @@
             width: 100%;
             height: 4px;
             background: var(--gradient);
+            z-index: 2;
         }
 
         .news-card:hover {
@@ -581,8 +644,9 @@
 
         .news-image {
             position: relative;
-            height: 200px;
+            height: clamp(160px, 30vh, 200px);
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .news-image img {
@@ -598,46 +662,50 @@
 
         .news-category {
             position: absolute;
-            top: 15px;
-            left: 15px;
-            padding: 5px 14px;
+            top: clamp(10px, 1.5vh, 15px);
+            left: clamp(10px, 1.5vw, 15px);
+            padding: clamp(4px, 0.6vw, 5px) clamp(10px, 1.5vw, 14px);
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: clamp(0.65rem, 0.8vw, 0.75rem);
             font-weight: 700;
             color: white;
             background: var(--gradient);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            z-index: 1;
         }
 
         .news-content {
-            padding: 20px;
+            padding: clamp(16px, 2.5vw, 20px);
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
 
         .news-content h3 {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 1.4vw, 1.2rem);
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: clamp(8px, 1vh, 10px);
             line-height: 1.4;
         }
 
         .news-excerpt {
             color: var(--gray);
-            margin-bottom: 15px;
+            margin-bottom: clamp(12px, 1.5vh, 15px);
             flex-grow: 1;
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 1vw, 0.95rem);
+            line-height: 1.5;
         }
 
         .news-meta {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
-            font-size: 0.85rem;
+            margin-bottom: clamp(12px, 1.5vh, 15px);
+            font-size: clamp(0.75rem, 0.9vw, 0.85rem);
             color: var(--gray);
+            gap: 8px;
         }
 
         .news-meta span {
@@ -659,19 +727,19 @@
         /* ===== NEWS LOADING INDICATOR ===== */
         .news-loading {
             text-align: center;
-            padding: 40px 20px;
+            padding: clamp(30px, 5vh, 40px) 20px;
             color: var(--gray);
             grid-column: 1 / -1;
         }
 
         .news-loading i {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
             margin-bottom: 15px;
             color: var(--primary);
         }
 
         .news-loading p {
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 1vw, 0.95rem);
             margin-top: 8px;
         }
 
@@ -691,6 +759,7 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
+            padding: 16px;
         }
 
         .popup-overlay.active {
@@ -701,7 +770,7 @@
         .popup {
             background: var(--white);
             border-radius: var(--radius-lg);
-            width: 90%;
+            width: 100%;
             max-width: 600px;
             max-height: 90vh;
             overflow-y: auto;
@@ -709,6 +778,7 @@
             transform: translateY(50px);
             transition: transform 0.3s ease;
             box-shadow: var(--shadow-lg);
+            margin: auto;
         }
 
         .popup-overlay.active .popup {
@@ -716,7 +786,7 @@
         }
 
         .popup-header {
-            padding: 20px 24px;
+            padding: clamp(16px, 2.5vw, 20px) clamp(16px, 3vw, 24px);
             border-bottom: 1px solid #e0e8f0;
             display: flex;
             justify-content: space-between;
@@ -726,10 +796,12 @@
             background: var(--white);
             z-index: 10;
             border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .popup-header h3 {
-            font-size: 1.5rem;
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
             font-weight: 800;
             color: #111;
             margin: 0;
@@ -741,35 +813,50 @@
         .popup-close {
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: clamp(1.3rem, 2.5vw, 1.5rem);
             cursor: pointer;
             color: var(--gray);
             transition: color 0.3s ease;
             padding: 5px 10px;
+            min-height: 44px;
+            min-width: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
         }
 
         .popup-close:hover {
             color: var(--error);
+            background: rgba(231, 76, 60, 0.1);
         }
 
         .popup-body {
-            padding: 24px;
+            padding: clamp(16px, 3vw, 24px);
         }
 
         .popup-footer {
-            padding: 16px 24px;
+            padding: clamp(12px, 2vw, 16px) clamp(16px, 3vw, 24px);
             border-top: 1px solid #e0e8f0;
             display: flex;
+            flex-wrap: wrap;
             justify-content: flex-end;
-            gap: 12px;
+            gap: clamp(8px, 1.5vw, 12px);
             position: sticky;
             bottom: 0;
             background: var(--white);
             border-radius: 0 0 var(--radius-lg) var(--radius-lg);
         }
 
+        .popup-footer .btn {
+            flex: 1;
+            min-width: 100px;
+            max-width: 200px;
+            justify-content: center;
+        }
+
         .calculator-form .form-group {
-            margin-bottom: 16px;
+            margin-bottom: clamp(12px, 2vh, 16px);
         }
 
         .calculator-form label {
@@ -777,18 +864,21 @@
             font-weight: 600;
             margin-bottom: 6px;
             color: #111;
+            font-size: clamp(0.85rem, 1vw, 0.95rem);
         }
 
         .calculator-form input,
         .calculator-form select {
             width: 100%;
-            padding: 12px 15px;
+            padding: clamp(10px, 1.5vw, 12px) clamp(12px, 2vw, 15px);
             border: 1px solid #e0e8f0;
             border-radius: var(--radius);
             font-family: 'Poppins', sans-serif;
             background: var(--white);
             color: #111;
             transition: all 0.3s ease;
+            font-size: clamp(0.9rem, 1vw, 1rem);
+            min-height: 48px;
         }
 
         .calculator-form input:focus,
@@ -800,7 +890,7 @@
 
         .calculator-result {
             margin-top: 20px;
-            padding: 20px;
+            padding: clamp(16px, 2.5vw, 20px);
             background: var(--light-bg);
             border-radius: var(--radius);
             display: none;
@@ -812,14 +902,14 @@
         }
 
         .result-value {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
             font-weight: 800;
             color: var(--primary);
             margin: 10px 0;
         }
 
         .result-category {
-            padding: 8px 15px;
+            padding: clamp(6px, 1vw, 8px) clamp(12px, 1.5vw, 15px);
             border-radius: var(--radius);
             font-weight: 600;
             text-align: center;
@@ -834,8 +924,8 @@
         /* ===== N8N CHAT ===== */
         #n8n-chat {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: clamp(16px, 2.5vh, 20px);
+            right: clamp(16px, 2.5vw, 20px);
             z-index: 10000;
         }
 
@@ -843,20 +933,20 @@
         footer {
             background: var(--gradient-dark);
             color: white;
-            padding: 50px 0 20px;
+            padding: clamp(30px, 5vh, 50px) 0 clamp(16px, 3vh, 20px);
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+            gap: clamp(24px, 4vw, 40px);
+            margin-bottom: clamp(20px, 4vh, 30px);
         }
 
         .footer-column h3 {
             color: white;
-            margin-bottom: 18px;
-            font-size: 1.1rem;
+            margin-bottom: clamp(14px, 2vh, 18px);
+            font-size: clamp(0.95rem, 1.2vw, 1.1rem);
             font-weight: 700;
         }
 
@@ -865,37 +955,42 @@
         }
 
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: clamp(6px, 1vh, 10px);
         }
 
         .footer-links a {
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: all 0.3s ease;
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 0.95vw, 0.95rem);
+            display: inline-block;
+            padding: 2px 0;
         }
 
         .footer-links a:hover {
             color: white;
+            transform: translateX(4px);
         }
 
         .social-links {
             display: flex;
-            gap: 12px;
+            gap: clamp(8px, 1.5vw, 12px);
             margin-top: 15px;
+            flex-wrap: wrap;
         }
 
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 38px;
-            height: 38px;
+            width: clamp(34px, 5vw, 38px);
+            height: clamp(34px, 5vw, 38px);
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: white;
             transition: all 0.3s ease;
             text-decoration: none;
+            font-size: clamp(0.9rem, 1.2vw, 1rem);
         }
 
         .social-links a:hover {
@@ -905,21 +1000,25 @@
 
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
+            padding-top: clamp(16px, 2.5vh, 20px);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.7);
-            font-size: 0.85rem;
+            font-size: clamp(0.75rem, 0.9vw, 0.85rem);
         }
 
         .footer-bottom p {
             margin: 0;
         }
 
-        /* ===== RESPONSIVE ===== */
+        /* ======================================== */
+        /* ===== RESPONSIVE BREAKPOINTS ===== */
+        /* ======================================== */
+
+        /* Tablet & Mobile */
         @media (max-width: 992px) {
             .hero-inner {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: clamp(1.5rem, 4vh, 2.5rem);
             }
             .hero-animation-container {
                 order: 2;
@@ -932,8 +1031,12 @@
                 justify-content: center;
             }
             .hero-animation-container dotlottie-wc {
-                width: 380px;
-                height: 380px;
+                width: min(380px, 80vw, 40vh);
+                height: min(380px, 80vw, 40vh);
+            }
+            .hero {
+                min-height: auto;
+                padding: calc(var(--navbar-height) + 30px) 0 40px;
             }
         }
 
@@ -941,66 +1044,96 @@
             .nav-links {
                 display: none;
                 position: absolute;
-                top: 70px;
+                top: var(--navbar-height);
                 left: 0;
                 width: 100%;
                 background: rgba(255, 255, 255, 0.98);
                 backdrop-filter: blur(12px);
                 flex-direction: column;
-                padding: 20px;
-                box-shadow: var(--shadow);
-                gap: 15px;
+                padding: clamp(16px, 3vh, 20px);
+                box-shadow: var(--shadow-lg);
+                gap: clamp(8px, 1.5vh, 15px);
+                border-bottom: 1px solid rgba(0,0,0,0.05);
             }
             .nav-links.active {
                 display: flex;
+                animation: slideDown 0.3s ease-out;
             }
-            .nav-links li {
-                width: 100%;
-                text-align: center;
+            @keyframes slideDown {
+                from { opacity: 0; transform: translateY(-10px); }
+                to { opacity: 1; transform: translateY(0); }
             }
             .nav-links a {
                 display: block;
-                padding: 8px 0;
+                padding: clamp(8px, 1.5vh, 12px) 0;
+                width: 100%;
+                text-align: center;
+                border-radius: 8px;
+                transition: background 0.2s;
+            }
+            .nav-links a:hover {
+                background: rgba(25, 114, 230, 0.05);
             }
             .mobile-menu-btn {
                 display: block;
             }
             .hero-animation-container dotlottie-wc {
-                width: 320px;
-                height: 320px;
+                width: min(320px, 75vw, 35vh);
+                height: min(320px, 75vw, 35vh);
             }
             .search-box {
-                width: 90%;
+                width: calc(100% - 16px);
+                max-width: 400px;
+                flex-wrap: nowrap;
             }
             .search-box input {
                 width: 100%;
+                min-width: 0;
+            }
+            .search-box button {
+                flex-shrink: 0;
             }
             .news-grid {
                 grid-template-columns: 1fr;
             }
             .map-container {
-                height: 400px;
+                height: clamp(300px, 50vh, 400px);
+                min-height: 280px;
+            }
+            .map-controls button {
+                padding: 6px 10px;
+                font-size: 0.75rem;
+            }
+            .map-controls button span {
+                display: none;
+            }
+            .popup-footer .btn {
+                flex: 1;
+                min-width: 80px;
+                max-width: 100%;
             }
         }
 
         @media (max-width: 576px) {
             .hero {
-                padding: 120px 0 50px;
+                padding: calc(var(--navbar-height) + 20px) 0 30px;
             }
             .section {
-                padding: 60px 0;
+                padding: clamp(40px, 6vh, 60px) 0;
             }
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
+                width: 100%;
             }
             .hero-buttons .btn {
                 width: 100%;
                 justify-content: center;
+                max-width: 320px;
             }
             .hero-animation-container dotlottie-wc {
-                width: 260px;
-                height: 260px;
+                width: min(260px, 70vw, 30vh);
+                height: min(260px, 70vw, 30vh);
             }
             .education-levels {
                 grid-template-columns: 1fr;
@@ -1009,11 +1142,127 @@
                 grid-template-columns: 1fr;
             }
             .popup {
-                width: 95%;
-                margin: 10px;
+                width: 100%;
+                margin: 0;
+                border-radius: var(--radius-lg);
+                max-height: 95vh;
+            }
+            .popup-overlay {
+                padding: 8px;
             }
             .map-container {
-                height: 350px;
+                height: clamp(250px, 45vh, 350px);
+                min-height: 250px;
+            }
+            .search-box {
+                padding: 4px;
+                gap: 4px;
+            }
+            .search-box input {
+                font-size: 0.85rem;
+                padding: 6px 8px;
+                min-height: 36px;
+            }
+            .search-box button {
+                font-size: 0.75rem;
+                padding: 6px 12px;
+                min-height: 36px;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+            .level-card, .calculator-card {
+                min-height: auto;
+                padding: 20px 16px;
+            }
+            .level-card .btn, .calculator-card .btn {
+                max-width: 100%;
+            }
+            .popup-footer {
+                flex-direction: column-reverse;
+            }
+            .popup-footer .btn {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        /* Small phones (320px - 375px) */
+        @media (max-width: 375px) {
+            .logo-text {
+                font-size: 1.1rem;
+            }
+            .logo-area img {
+                height: 30px;
+            }
+            .main-title {
+                font-size: 1.8rem;
+                letter-spacing: 0.05em;
+            }
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            .hero-text .tagline {
+                font-size: 0.75rem;
+            }
+            .hero-text .sub {
+                font-size: 0.85rem;
+            }
+            .btn {
+                font-size: 0.8rem;
+                padding: 10px 16px;
+                min-height: 40px;
+            }
+            .container {
+                padding: 0 12px;
+            }
+            .popup-header h3 {
+                font-size: 1rem;
+            }
+            .calculator-form input,
+            .calculator-form select {
+                font-size: 0.85rem;
+                padding: 8px 12px;
+                min-height: 40px;
+            }
+        }
+
+        /* Large screens (1920px+) */
+        @media (min-width: 1600px) {
+            .container {
+                max-width: 1400px;
+            }
+            .hero-inner {
+                gap: 6rem;
+            }
+            .hero-text h1 {
+                font-size: 7rem;
+            }
+            .hero-animation-container dotlottie-wc {
+                width: 550px;
+                height: 550px;
+            }
+        }
+
+        /* Prevent horizontal scroll on all devices */
+        img, svg, video, iframe {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Smooth touch interactions for mobile */
+        @media (hover: none) {
+            .btn:hover {
+                transform: none !important;
+            }
+            .level-card:hover,
+            .calculator-card:hover,
+            .news-card:hover {
+                transform: none !important;
             }
         }
     </style>
@@ -1033,7 +1282,7 @@
             <a href="#calculators">Kalkulator</a>
             <a href="#news">Berita</a>
         </div>
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
             <i class="fas fa-bars"></i>
         </button>
     </nav>
@@ -1060,7 +1309,7 @@
                     <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.3/dist/dotlottie-wc.js" type="module"></script>
                     <dotlottie-wc
                         src="https://lottie.host/3fb791e3-4240-4e6e-8f14-72602c5b83d6/LaeMPE5LkB.lottie"
-                        style="width: 480px; height: 480px;"
+                        style="width: 480px; height: 480px; max-width: 100%;"
                         autoplay
                         loop
                     ></dotlottie-wc>
@@ -1122,8 +1371,8 @@
                     <button onclick="findHospitalByName()">Cari</button>
                 </div>
                 <div class="map-controls">
-                    <button id="locateMe"><i class="fas fa-location-arrow"></i> Lokasi Saya</button>
-                    <button id="clearRoute"><i class="fas fa-route"></i> Hapus Rute</button>
+                    <button id="locateMe"><i class="fas fa-location-arrow"></i> <span>Lokasi Saya</span></button>
+                    <button id="clearRoute"><i class="fas fa-route"></i> <span>Hapus Rute</span></button>
                 </div>
                 <div id="healthcare-map"></div>
             </div>
@@ -1204,7 +1453,7 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>Asistenku</h3>
-                    <p style="color: rgba(255,255,255,0.8);">Platform kesehatan digital untuk remaja Indonesia.</p>
+                    <p style="color: rgba(255,255,255,0.8); font-size: clamp(0.85rem, 0.95vw, 0.95rem);">Platform kesehatan digital untuk remaja Indonesia.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-tiktok"></i></a>
@@ -1231,7 +1480,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p><i class="far fa-copyright"></i> 2025 Hak Cipta oleh SatbaLab, Jl. Pantai Pererenan, Mengwi, Badung, Bali, Indonesia</p>
+                <p><i class="far fa-copyright"></i> 2026 Hak Cipta oleh satujari, Jl. Pantai Pererenan, Mengwi, Badung, Bali, Indonesia</p>
             </div>
         </div>
     </footer>
@@ -1274,6 +1523,15 @@
                 '<i class="fas fa-bars"></i>';
         });
 
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (navLinks.classList.contains('active') && 
+                !e.target.closest('.navbar')) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1283,9 +1541,9 @@
                 const targetId = this.getAttribute('href');
                 const target = document.querySelector(targetId);
                 if (target) {
-                    const navbarHeight = 70;
+                    const navbarHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navbar-height')) || 70;
                     const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                    window.scrollTo({ top: Math.max(0, targetPosition), behavior: 'smooth' });
                 }
                 document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
                 this.classList.add('active');
@@ -1301,7 +1559,7 @@
                 }
             });
         }
-        window.addEventListener('scroll', reveal);
+        window.addEventListener('scroll', reveal, { passive: true });
         window.addEventListener('load', reveal);
         setTimeout(reveal, 300);
 
@@ -1359,7 +1617,7 @@
         function locateUser() {
             if (!navigator.geolocation) { alert("Geolocation tidak didukung."); return; }
             const locateBtn = document.getElementById('locateMe');
-            locateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mendeteksi...';
+            locateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Mendeteksi...</span>';
             locateBtn.disabled = true;
 
             navigator.geolocation.getCurrentPosition(
@@ -1369,12 +1627,12 @@
                     if (userLocationMarker) healthcareMap.removeLayer(userLocationMarker);
                     userLocationMarker = L.marker([lat, lng]).addTo(healthcareMap).bindPopup("Lokasi Anda").openPopup();
                     healthcareMap.setView([lat, lng], 14);
-                    locateBtn.innerHTML = '<i class="fas fa-location-arrow"></i> Lokasi Saya';
+                    locateBtn.innerHTML = '<i class="fas fa-location-arrow"></i> <span>Lokasi Saya</span>';
                     locateBtn.disabled = false;
                 },
                 function() {
                     alert('Gagal mengambil lokasi.');
-                    locateBtn.innerHTML = '<i class="fas fa-location-arrow"></i> Lokasi Saya';
+                    locateBtn.innerHTML = '<i class="fas fa-location-arrow"></i> <span>Lokasi Saya</span>';
                     locateBtn.disabled = false;
                 }
             );
@@ -1425,11 +1683,36 @@
                 setCalculatorForm(currentCalculator);
                 calculatorResult.classList.remove('active');
                 calculatorPopup.classList.add('active');
+                document.body.style.overflow = 'hidden';
             });
         });
 
-        popupClose.addEventListener('click', () => calculatorPopup.classList.remove('active'));
-        resetCalculator.addEventListener('click', () => { calculatorForm.reset(); calculatorResult.classList.remove('active'); });
+        function closePopup() {
+            calculatorPopup.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        popupClose.addEventListener('click', closePopup);
+        
+        // Close popup on overlay click
+        calculatorPopup.addEventListener('click', function(e) {
+            if (e.target === this) closePopup();
+        });
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && calculatorPopup.classList.contains('active')) closePopup();
+        });
+
+        resetCalculator.addEventListener('click', function() { 
+            calculatorForm.querySelectorAll('input, select').forEach(el => {
+                if (el.type === 'number') el.value = '';
+                else if (el.type === 'date') el.value = '';
+                else if (el.tagName === 'SELECT') el.selectedIndex = 0;
+            });
+            calculatorResult.classList.remove('active'); 
+        });
+        
         calculateBtn.addEventListener('click', calculate);
 
         function setCalculatorForm(type) {
@@ -1437,8 +1720,8 @@
             switch (type) {
                 case 'bmi':
                     html = `
-                        <div class="form-group"><label>Berat Badan (kg)</label><input type="number" id="weight" placeholder="Masukkan berat badan" min="1"></div>
-                        <div class="form-group"><label>Tinggi Badan (cm)</label><input type="number" id="height" placeholder="Masukkan tinggi badan" min="50"></div>
+                        <div class="form-group"><label>Berat Badan (kg)</label><input type="number" id="weight" placeholder="Masukkan berat badan" min="1" step="0.1"></div>
+                        <div class="form-group"><label>Tinggi Badan (cm)</label><input type="number" id="height" placeholder="Masukkan tinggi badan" min="50" step="0.1"></div>
                     `;
                     break;
                 case 'heart':
@@ -1447,8 +1730,8 @@
                 case 'calorie':
                     html = `
                         <div class="form-group"><label>Usia (tahun)</label><input type="number" id="calorieAge" placeholder="Masukkan usia" min="1"></div>
-                        <div class="form-group"><label>Berat Badan (kg)</label><input type="number" id="calorieWeight" placeholder="Masukkan berat badan" min="1"></div>
-                        <div class="form-group"><label>Tinggi Badan (cm)</label><input type="number" id="calorieHeight" placeholder="Masukkan tinggi badan" min="50"></div>
+                        <div class="form-group"><label>Berat Badan (kg)</label><input type="number" id="calorieWeight" placeholder="Masukkan berat badan" min="1" step="0.1"></div>
+                        <div class="form-group"><label>Tinggi Badan (cm)</label><input type="number" id="calorieHeight" placeholder="Masukkan tinggi badan" min="50" step="0.1"></div>
                         <div class="form-group"><label>Tingkat Aktivitas</label>
                             <select id="activityLevel">
                                 <option value="1.2">Sedentary</option>
@@ -1462,7 +1745,7 @@
                     break;
                 case 'water':
                     html = `
-                        <div class="form-group"><label>Berat Badan (kg)</label><input type="number" id="waterWeight" placeholder="Masukkan berat badan" min="1"></div>
+                        <div class="form-group"><label>Berat Badan (kg)</label><input type="number" id="waterWeight" placeholder="Masukkan berat badan" min="1" step="0.1"></div>
                         <div class="form-group"><label>Tingkat Aktivitas</label>
                             <select id="waterActivity">
                                 <option value="30">Sedentary</option>
@@ -1487,7 +1770,7 @@
                             </select>
                         </div>
                         <div class="form-group"><label>Durasi (menit)</label><input type="number" id="duration" placeholder="Masukkan durasi" min="1"></div>
-                        <div class="form-group"><label>Berat Badan (kg)</label><input type="number" id="burnWeight" placeholder="Masukkan berat badan" min="1"></div>
+                        <div class="form-group"><label>Berat Badan (kg)</label><input type="number" id="burnWeight" placeholder="Masukkan berat badan" min="1" step="0.1"></div>
                     `;
                     break;
                 case 'pregnancy':
@@ -1506,7 +1789,7 @@
                 case 'bmi': {
                     const w = parseFloat(document.getElementById('weight').value);
                     const h = parseFloat(document.getElementById('height').value) / 100;
-                    if (w && h) {
+                    if (w && h && w > 0 && h > 0) {
                         const bmi = w / (h * h);
                         let cat = 'Normal', cls = 'result-normal';
                         if (bmi < 18.5) { cat = 'Kekurangan berat badan'; cls = 'result-underweight'; }
@@ -1519,7 +1802,7 @@
                 }
                 case 'heart': {
                     const age = parseInt(document.getElementById('age').value);
-                    if (age) {
+                    if (age && age > 0) {
                         const max = 220 - age;
                         const min = Math.round(max * 0.5);
                         const max2 = Math.round(max * 0.85);
@@ -1532,7 +1815,7 @@
                     const w = parseFloat(document.getElementById('calorieWeight').value);
                     const h = parseFloat(document.getElementById('calorieHeight').value);
                     const act = parseFloat(document.getElementById('activityLevel').value);
-                    if (age && w && h) {
+                    if (age && w && h && age > 0 && w > 0 && h > 0) {
                         const bmr = 10 * w + 6.25 * h - 5 * age + 5;
                         const tdee = Math.round(bmr * act);
                         resultHTML = `<h4>Hasil:</h4><p><strong>BMR:</strong> ${Math.round(bmr)} kalori/hari</p><p><strong>TDEE:</strong> ${tdee} kalori/hari</p>`;
@@ -1542,7 +1825,7 @@
                 case 'water': {
                     const w = parseFloat(document.getElementById('waterWeight').value);
                     const act = parseInt(document.getElementById('waterActivity').value);
-                    if (w) {
+                    if (w && w > 0) {
                         const need = Math.round(w * act / 1000);
                         resultHTML = `<h4>Kebutuhan Cairan:</h4><div class="result-value">${need} Liter/hari</div>`;
                     } else resultHTML = '<p style="color:var(--error);">Masukkan berat badan.</p>';
@@ -1552,7 +1835,7 @@
                     const act = parseInt(document.getElementById('activityType').value);
                     const dur = parseInt(document.getElementById('duration').value);
                     const w = parseFloat(document.getElementById('burnWeight').value);
-                    if (act && dur && w) {
+                    if (act && dur && w && dur > 0 && w > 0) {
                         const burned = Math.round(act * w * dur / 60);
                         resultHTML = `<h4>Kalori Terbakar:</h4><div class="result-value">${burned} kalori</div>`;
                     } else resultHTML = '<p style="color:var(--error);">Masukkan semua data.</p>';
@@ -1561,11 +1844,11 @@
                 case 'pregnancy': {
                     const lastPeriod = new Date(document.getElementById('lastPeriod').value);
                     const cycle = parseInt(document.getElementById('cycleLength').value) || 28;
-                    if (lastPeriod && !isNaN(lastPeriod)) {
+                    if (lastPeriod && !isNaN(lastPeriod.getTime())) {
                         const due = new Date(lastPeriod);
                         due.setDate(due.getDate() + 280 - (cycle - 28));
                         const today = new Date();
-                        const weeks = Math.floor((today - lastPeriod) / (7 * 24 * 60 * 60 * 1000));
+                        const weeks = Math.max(0, Math.floor((today - lastPeriod) / (7 * 24 * 60 * 60 * 1000)));
                         resultHTML = `<h4>Hasil:</h4><p><strong>Perkiraan Persalinan:</strong> ${due.toLocaleDateString('id-ID')}</p><p><strong>Minggu Kehamilan:</strong> ${weeks} minggu</p>`;
                     } else resultHTML = '<p style="color:var(--error);">Masukkan tanggal yang valid.</p>';
                     break;
@@ -1573,6 +1856,10 @@
             }
             calculatorResult.innerHTML = resultHTML;
             calculatorResult.classList.add('active');
+            // Scroll to result on mobile
+            if (window.innerWidth < 768) {
+                calculatorResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
         }
 
         // ========== BERITA ==========
