@@ -294,8 +294,8 @@
         }
 
         .hero-animation-container dotlottie-wc {
-            width: min(190px, 40vw, 20vh);
-            height: min(190px, 40vw, 20vh);
+            width: min(220px, 45vw, 25vh);
+            height: min(220px, 45vw, 25vh);
             max-width: 100%;
             filter: drop-shadow(0 8px 20px rgba(25,114,230,0.12));
         }
@@ -1015,25 +1015,24 @@
         /* ===== RESPONSIVE BREAKPOINTS ===== */
         /* ======================================== */
 
-        /* Tablet & Mobile */
+        /* Tablet & Mobile - HAPUS ANIMASI DI HP */
         @media (max-width: 992px) {
             .hero-inner {
                 grid-template-columns: 1fr;
                 gap: clamp(0.8rem, 2vh, 1.5rem);
             }
+            
+            /* SEMBUNYIKAN ANIMASI DI HP/TABLET */
             .hero-animation-container {
-                order: 2;
+                display: none;
             }
+            
             .hero-text {
                 order: 1;
                 text-align: center;
             }
             .hero-buttons {
                 justify-content: center;
-            }
-            .hero-animation-container dotlottie-wc {
-                width: min(170px, 38vw, 18vh);
-                height: min(170px, 38vw, 18vh);
             }
             .hero {
                 min-height: auto;
@@ -1083,10 +1082,6 @@
             }
             .mobile-menu-btn {
                 display: block;
-            }
-            .hero-animation-container dotlottie-wc {
-                width: min(140px, 35vw, 16vh);
-                height: min(140px, 35vw, 16vh);
             }
             .hero-text h1 {
                 font-size: clamp(2rem, 8vw, 3rem);
@@ -1146,10 +1141,6 @@
                 width: 100%;
                 justify-content: center;
                 max-width: 280px;
-            }
-            .hero-animation-container dotlottie-wc {
-                width: min(110px, 30vw, 14vh);
-                height: min(110px, 30vw, 14vh);
             }
             .hero-text h1 {
                 font-size: clamp(1.6rem, 7vw, 2.4rem);
@@ -1254,13 +1245,9 @@
                 padding: 8px 12px;
                 min-height: 40px;
             }
-            .hero-animation-container dotlottie-wc {
-                width: min(90px, 25vw, 12vh);
-                height: min(90px, 25vw, 12vh);
-            }
         }
 
-        /* Large screens (1920px+) */
+        /* Large screens (1920px+) - TAMPILKAN ANIMASI DI DESKTOP */
         @media (min-width: 1600px) {
             .container {
                 max-width: 1400px;
@@ -1272,8 +1259,8 @@
                 font-size: 5rem;
             }
             .hero-animation-container dotlottie-wc {
-                width: 220px;
-                height: 220px;
+                width: 250px;
+                height: 250px;
             }
             .hero-text .tagline {
                 font-size: 1rem;
@@ -1341,7 +1328,7 @@
                     <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.3/dist/dotlottie-wc.js" type="module"></script>
                     <dotlottie-wc
                         src="https://lottie.host/3fb791e3-4240-4e6e-8f14-72602c5b83d6/LaeMPE5LkB.lottie"
-                        style="width: 200px; height: 200px; max-width: 100%;"
+                        style="width: 220px; height: 220px; max-width: 100%;"
                         autoplay
                         loop
                     ></dotlottie-wc>
